@@ -22,6 +22,7 @@ struct vec {
 
 using vec2 = vec<float, 2>;
 using vec3 = vec<float, 3>;
+using vec3i = vec<int32, 3>;
 using vec4 = vec<float, 4>;
 
 using mask32x4 = simd::mask32x4;
@@ -29,6 +30,7 @@ using mask32x4 = simd::mask32x4;
 } // namespace math
 
 #include "math/vec3.h"
+#include "math/vec3i.h"
 #include "math/vec4.h"
 
 #endif // TR_MATH_VEC_H_

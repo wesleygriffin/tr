@@ -13,6 +13,9 @@ namespace simd {
 
 template <class ScalarType, int VectorSize, class VectorType>
 struct hardware_vector {
+  using T = ScalarType;
+  using V = VectorType;
+
   enum {
     ScalarBits = sizeof(ScalarType) * 8,
     VectorBits = sizeof(VectorType) * 8,
@@ -42,20 +45,23 @@ static_assert(sizeof(float) == 4);
 using float32x4 = hardware_vector<float, 4, __m128>;
 using mask32x4 = hardware_mask<32, 4, __m128i>;
 
-template <class T>
-T SIMDAPI_CALL zero() noexcept;
+using int32x4 = hardware_vector<int32, 4, __m128i>;
 
-template <class T>
-T SIMDAPI_CALL set1(float s) noexcept;
+template <class V>
+V SIMDAPI_CALL zero() noexcept;
 
-template <class T>
-T SIMDAPI_CALL set4(float x, float y, float z, float w) noexcept;
+template <class V, class T>
+V SIMDAPI_CALL set1(T s) noexcept;
 
-template <class T>
-T SIMDAPI_CALL uload(float const* p) noexcept;
+template <class V, class T>
+V SIMDAPI_CALL set4(T x, T y, T z, T w) noexcept;
+
+template <class V, class T>
+V SIMDAPI_CALL uload(T const* p) noexcept;
 
 } // namespace simd
 
 #include "simd/sse2_float128.h"
+#include "simd/sse2_int128.h"
 
 #endif // TR_SIMD_SIMD_H_

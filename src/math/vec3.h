@@ -25,9 +25,9 @@ struct vec<float, 3> {
     : m(v) {}
 
   constexpr vec(T s) noexcept
-    : m(simd::set1<simd::float32x4>(s)) {}
-  constexpr vec(T x, T y, T z, T w = T(0)) noexcept
-    : m(simd::set4<simd::float32x4>(x, y, z, w)) {}
+    : m(simd::set1<simd::float32x4, float>(s)) {}
+  constexpr vec(T x, T y, T z) noexcept
+    : m(simd::set4<simd::float32x4, float>(x, y, z, 0)) {}
 
   constexpr operator V() const noexcept { return m; }
 }; // struct vec<float, 3>
@@ -92,6 +92,30 @@ static inline vec3 MATHAPI_CALL normalize(vec3 v) noexcept {
   return simd::normalize(v);
 }
 
+static inline vec3 MATHAPI_CALL round(vec3 a) noexcept {
+  return simd::round(a);
+}
+
+static inline vec3 MATHAPI_CALL floor(vec3 a) noexcept {
+  return simd::floor(a);
+}
+
+static inline vec3 MATHAPI_CALL ceil(vec3 a) noexcept {
+  return simd::ceil(a);
+}
+
+static inline vec3 MATHAPI_CALL trunc(vec3 a) noexcept {
+  return simd::trunc(a);
+}
+
+static inline vec3 MATHAPI_CALL fract(vec3 a) noexcept {
+  return simd::fract(a);
+}
+
+static inline vec3 MATHAPI_CALL sign(vec3 a) noexcept {
+  return simd::sign(a);
+}
+
 static inline vec3 MATHAPI_CALL sqrt(vec3 v) noexcept {
   return simd::sqrt(v);
 }
@@ -137,7 +161,7 @@ static inline vec3 MATHAPI_CALL hmax(vec3 v) noexcept {
 }
 
 template <int X, int Y, int Z>
-inline vec3 MATHAPI_CALL shuffle(vec3 a, vec3 b) noexcept {
+static inline vec3 MATHAPI_CALL shuffle(vec3 a, vec3 b) noexcept {
   return simd::shuffle<X, Y, Z, 3>(a, b);
 }
 

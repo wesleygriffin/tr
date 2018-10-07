@@ -59,18 +59,18 @@ inline float32x4 SIMDAPI_CALL zero<float32x4>() noexcept {
 }
 
 template <>
-inline float32x4 SIMDAPI_CALL set1<float32x4>(float s) noexcept {
+inline float32x4 SIMDAPI_CALL set1<float32x4, float>(float s) noexcept {
   return _mm_set1_ps(s);
 }
 
 template <>
-inline float32x4 SIMDAPI_CALL set4<float32x4>(float x, float y, float z,
-                                              float w) noexcept {
+inline float32x4 SIMDAPI_CALL set4<float32x4, float>(float x, float y, float z,
+                                                     float w) noexcept {
   return _mm_setr_ps(x, y, z, w);
 }
 
 template <>
-inline float32x4 SIMDAPI_CALL uload<float32x4>(float const* p) noexcept {
+inline float32x4 SIMDAPI_CALL uload<float32x4, float>(float const* p) noexcept {
   return _mm_loadu_ps(p);
 }
 

@@ -93,6 +93,30 @@ static inline vec4 MATHAPI_CALL normalize(vec4 v) noexcept {
   return simd::normalize(v);
 }
 
+static inline vec4 MATHAPI_CALL round(vec4 a) noexcept {
+  return simd::round(a);
+}
+
+static inline vec4 MATHAPI_CALL floor(vec4 a) noexcept {
+  return simd::floor(a);
+}
+
+static inline vec4 MATHAPI_CALL ceil(vec4 a) noexcept {
+  return simd::ceil(a);
+}
+
+static inline vec4 MATHAPI_CALL trunc(vec4 a) noexcept {
+  return simd::trunc(a);
+}
+
+static inline vec4 MATHAPI_CALL fract(vec4 a) noexcept {
+  return simd::fract(a);
+}
+
+static inline vec4 MATHAPI_CALL sign(vec4 a) noexcept {
+  return simd::sign(a);
+}
+
 static inline vec4 MATHAPI_CALL sqrt(vec4 v) noexcept {
   return simd::sqrt(v);
 }
@@ -134,7 +158,7 @@ static inline vec4 MATHAPI_CALL hmax(vec4 v) noexcept {
 }
 
 template <int X, int Y, int Z, int W>
-inline vec4 MATHAPI_CALL shuffle(vec4 a, vec4 b) noexcept {
+static inline vec4 MATHAPI_CALL shuffle(vec4 a, vec4 b) noexcept {
   return simd::shuffle<X, Y, Z, W>(a, b);
 }
 
