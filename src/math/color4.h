@@ -14,7 +14,7 @@ struct color<float, 4> {
   enum { N = 4 };
 
   union {
-    V m;
+    V m{};
 
     detail::scalar_accessor<T, V, 0> r;
     detail::scalar_accessor<T, V, 1> g;
@@ -22,13 +22,13 @@ struct color<float, 4> {
     detail::scalar_accessor<T, V, 3> a;
   };
 
-  constexpr color() noexcept = default;
+  color() noexcept {}
   constexpr color(V v) noexcept
     : m(v) {}
 
-  constexpr color(T s) noexcept
+  color(T s) noexcept
     : m(simd::set1<simd::float32x4>(s)) {}
-  constexpr color(T r, T g, T b, T a) noexcept
+  color(T r, T g, T b, T a) noexcept
     : m(simd::set4<simd::float32x4>(r, g, b, a)) {}
 
   constexpr operator V() const noexcept { return m; }

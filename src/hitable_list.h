@@ -6,7 +6,7 @@
 #include <memory>
 #include <vector>
 
-struct hitable_list : public hitable {
+struct hitable_list final : public hitable {
   hitable_list() noexcept = default;
 
   void push_back(std::shared_ptr<hitable> h) { list_.push_back(std::move(h)); }

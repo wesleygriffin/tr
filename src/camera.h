@@ -52,8 +52,7 @@ struct camera {
   camera& operator=(camera&&) noexcept = default;
 
   math::ray get_ray(math::pcg& gen, float s, float t,
-                    math::vec2 const& time_interval = {0.f, 0.f}) const
-    noexcept {
+                    math::vec2 const& time_interval = {0.f, 0.f}) noexcept {
     math::vec3 const rd = random_in_unit_disk(gen) * lens_radius;
     math::vec3 const offset = u * math::vec3(rd.x) + v * math::vec3(rd.y);
     float const time = math::lerp(time_interval.x, time_interval.y, dis(gen));

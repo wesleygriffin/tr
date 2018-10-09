@@ -4,7 +4,7 @@
 #include "hitable.h"
 #include "material.h"
 
-struct sphere : public hitable {
+struct sphere final : public hitable {
   math::point3 center;
   float radius;
   std::unique_ptr<material> mat;

@@ -12,7 +12,7 @@ struct point<float, 4> {
   enum { N = 4 };
 
   union {
-    V m;
+    V m{};
 
     detail::scalar_accessor<T, V, 0> x;
     detail::scalar_accessor<T, V, 1> y;
@@ -20,13 +20,13 @@ struct point<float, 4> {
     detail::scalar_accessor<T, V, 3> w;
   };
 
-  constexpr point() noexcept = default;
+  point() noexcept {}
   constexpr point(V v) noexcept
     : m(v) {}
 
-  constexpr point(T s) noexcept
+  point(T s) noexcept
     : m(simd::set1<simd::float32x4>(s)) {}
-  constexpr point(T x, T y, T z, T w = T(1)) noexcept
+  point(T x, T y, T z, T w = T(1)) noexcept
     : m(simd::set4<simd::float32x4>(x, y, z, w)) {}
 
   constexpr operator V() const noexcept { return m; }
@@ -117,6 +117,22 @@ static inline point4 MATHAPI_CALL hmin(point4 p) noexcept {
 
 static inline point4 MATHAPI_CALL hmax(point4 p) noexcept {
   return simd::hmax(p);
+}
+
+static inline point4 MATHAPI_CALL round(point4 p) noexcept {
+  return simd::round(p);
+}
+
+static inline point4 MATHAPI_CALL floor(point4 p) noexcept {
+  return simd::floor(p);
+}
+
+static inline point4 MATHAPI_CALL ceil(point4 p) noexcept {
+  return simd::ceil(p);
+}
+
+static inline point4 MATHAPI_CALL trunc(point4 p) noexcept {
+  return simd::trunc(p);
 }
 
 } // namespace math

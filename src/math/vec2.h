@@ -17,7 +17,7 @@ struct vec<float, 2> {
     T m[N];
   };
 
-  constexpr vec() noexcept = default;
+  vec() noexcept : x(T(0)), y(T(0)) {}
 
   constexpr vec(T s) noexcept
     : x(s), y(s) {}

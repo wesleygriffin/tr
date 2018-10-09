@@ -22,9 +22,11 @@ struct material {
   virtual bool scatter(math::pcg& gen, math::ray const& r_in,
                        hit_record const& rec, math::color4& attenuation,
                        math::ray& scattered) const noexcept = 0;
+
+  virtual ~material() noexcept {}
 }; // struct material
 
-struct lambertian : public material {
+struct lambertian final : public material {
   std::unique_ptr<texture> albedo;
 
   lambertian(std::unique_ptr<texture> a) noexcept
@@ -46,7 +48,7 @@ static inline math::vec3 MATHAPI_CALL reflect(math::vec3 v,
   return v - math::dot(v, n) * 2.0f * n;
 }
 
-struct metal : public material {
+struct metal final : public material {
   math::color4 albedo;
   float fuzz;
 
@@ -84,7 +86,7 @@ inline float schlick(float cosine, float ref_idx) noexcept {
   return r0 + (1.f - r0) * std::pow((1.f - cosine), 5.f);
 } // schlick
 
-struct dielectric : public material {
+struct dielectric final : public material {
   float ref_idx;
 
   dielectric(float ri) noexcept : ref_idx(ri) {}

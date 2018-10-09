@@ -21,7 +21,7 @@ struct hardware_vector {
     VectorBits = sizeof(VectorType) * 8,
   };
 
-  VectorType data;
+  VectorType data{};
 
   constexpr hardware_vector() noexcept = default;
   constexpr hardware_vector(VectorType v) noexcept

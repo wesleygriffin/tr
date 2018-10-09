@@ -11,6 +11,7 @@
 #include "stb_image_write.h"
 #include "tbb/tbb.h"
 #include <atomic>
+#include <cfloat>
 #include <chrono>
 #include <cstdio>
 #include <memory>

@@ -22,15 +22,17 @@ struct perlin {
 
 template <class G>
 inline float perlin::noise(G& gen, math::point3 p) const noexcept {
-  if (!ranfloat) generate(gen);
+  //if (!ranfloat) generate(gen, p);
 
-  math::vec3 const uvw = p - math::floor(p);
-  math::vec3i const ijk = (p * 4.f) & math::vec3i(255);
-  return ranfloat[perm_x[ijk.x] ^ perm_y[ijk.y] ^ perm_z[ifk.z]];
+  //math::vec3 const uvw = p - math::floor(p);
+  //math::vec3i const ijk = (p * 4.f) & math::vec3(255);
+  //return ranfloat[perm_x[ijk.x] ^ perm_y[ijk.y] ^ perm_z[ijk.z]];
+  return -1.f;
 } // perlin::noise
 
 template <class G>
 inline void perlin::generate(G& gen) {
+#if 0
   std::uniform_real_distribution<float> dis{0.f, 1.f};
 
   ranfloat = new float[256];
@@ -54,6 +56,7 @@ inline void perlin::generate(G& gen) {
   perm_z = new int[256];
   for (int i = 0; i < 256; ++i) p[i] = i;
   permute(perm_z.get(), 256);
+#endif
 }
 
 #endif // TR_PERLIN_H_

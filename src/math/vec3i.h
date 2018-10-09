@@ -14,23 +14,23 @@ struct vec<int32, 3> {
   enum { N = 3 };
 
   union {
-    V m;
+    V m{};
 
     detail::scalar_accessor<T, V, 0> x;
     detail::scalar_accessor<T, V, 1> y;
     detail::scalar_accessor<T, V, 2> z;
   };
 
-  constexpr vec() noexcept = default;
+  vec() noexcept {}
   constexpr vec(V v) noexcept
     : m(v) {}
 
-  constexpr vec(T s) noexcept
+  vec(T s) noexcept
     : m(simd::set1<simd::int32x4>(s)) {}
-  constexpr vec(T x, T y, T z) noexcept
+  vec(T x, T y, T z) noexcept
     : m(simd::set4<simd::int32x4, int32>(x, y, z, 0)) {}
 
-  constexpr vec(vec3 v) noexcept
+  vec(vec3 v) noexcept
     : m(simd::set4<simd::int32x4>(int32(v.x), int32(v.y), int32(v.z), 0)) {}
 
   constexpr operator V() const noexcept { return m; }

@@ -13,20 +13,20 @@ struct vec<float, 3> {
   enum { N = 3 };
 
   union {
-    V m;
+    V m{};
 
     detail::scalar_accessor<T, V, 0> x;
     detail::scalar_accessor<T, V, 1> y;
     detail::scalar_accessor<T, V, 2> z;
   };
 
-  constexpr vec() noexcept = default;
+  vec() noexcept {}
   constexpr vec(V v) noexcept
     : m(v) {}
 
-  constexpr vec(T s) noexcept
+  vec(T s) noexcept
     : m(simd::set1<simd::float32x4, float>(s)) {}
-  constexpr vec(T x, T y, T z) noexcept
+  vec(T x, T y, T z) noexcept
     : m(simd::set4<simd::float32x4, float>(x, y, z, 0)) {}
 
   constexpr operator V() const noexcept { return m; }
@@ -92,28 +92,28 @@ static inline vec3 MATHAPI_CALL normalize(vec3 v) noexcept {
   return simd::normalize(v);
 }
 
-static inline vec3 MATHAPI_CALL round(vec3 a) noexcept {
-  return simd::round(a);
+static inline vec3 MATHAPI_CALL round(vec3 v) noexcept {
+  return simd::round(v);
 }
 
-static inline vec3 MATHAPI_CALL floor(vec3 a) noexcept {
-  return simd::floor(a);
+static inline vec3 MATHAPI_CALL floor(vec3 v) noexcept {
+  return simd::floor(v);
 }
 
-static inline vec3 MATHAPI_CALL ceil(vec3 a) noexcept {
-  return simd::ceil(a);
+static inline vec3 MATHAPI_CALL ceil(vec3 v) noexcept {
+  return simd::ceil(v);
 }
 
-static inline vec3 MATHAPI_CALL trunc(vec3 a) noexcept {
-  return simd::trunc(a);
+static inline vec3 MATHAPI_CALL trunc(vec3 v) noexcept {
+  return simd::trunc(v);
 }
 
-static inline vec3 MATHAPI_CALL fract(vec3 a) noexcept {
-  return simd::fract(a);
+static inline vec3 MATHAPI_CALL fract(vec3 v) noexcept {
+  return simd::fract(v);
 }
 
-static inline vec3 MATHAPI_CALL sign(vec3 a) noexcept {
-  return simd::sign(a);
+static inline vec3 MATHAPI_CALL sign(vec3 v) noexcept {
+  return simd::sign(v);
 }
 
 static inline vec3 MATHAPI_CALL sqrt(vec3 v) noexcept {

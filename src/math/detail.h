@@ -5,14 +5,14 @@ namespace math::detail {
 
 template <class T, class V, int I>
 struct scalar_accessor {
-  V m;
+  V m{};
 
-  constexpr scalar_accessor() noexcept = default;
+  scalar_accessor() noexcept = default;
 
   constexpr operator T() const noexcept { return simd::get_component<I>(m); }
 
   constexpr scalar_accessor& operator=(T s) noexcept {
-    data = simd::set_component<I>(m, s);
+    m = simd::set_component<I>(m, s);
     return *this;
   }
 

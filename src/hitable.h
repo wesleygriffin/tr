@@ -22,6 +22,8 @@ struct hitable {
 
   virtual bool bounding_box(math::vec2 const& time_interval,
                             math::aabb& box) const noexcept = 0;
+
+  virtual ~hitable() noexcept {}
 }; // struct hitable
 
 #endif // TR_HITABLE_H_

@@ -2,6 +2,7 @@ find_package(TBB REQUIRED)
 
 add_executable(tr tr.cc)
 target_compile_definitions(tr PRIVATE FMT_HEADER_ONLY)
+target_include_directories(tr PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(tr Fmt::Fmt Stb::ImageWrite TBB::tbb)
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")

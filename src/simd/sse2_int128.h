@@ -29,7 +29,7 @@ static inline int32x4 SIMDAPI_CALL set_component(int32x4 a, int32 s) noexcept {
 template <unsigned int I>
 static inline int32 SIMDAPI_CALL get_component(int32x4 a) noexcept {
   static_assert(I < 4);
-  return _mm_extract_epi32(a, Index);
+  return _mm_extract_epi32(a, I);
 }
 
 template <>

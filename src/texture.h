@@ -9,9 +9,11 @@
 struct texture {
   virtual math::color4 value(math::vec2 const& uv, math::point3 const& p) const
     noexcept = 0;
+
+  virtual ~texture() noexcept {}
 }; // struct texture
 
-struct constant_texture : public texture {
+struct constant_texture final : public texture {
   math::color4 color;
 
   constant_texture(math::color4 c)
@@ -23,7 +25,7 @@ struct constant_texture : public texture {
   }
 }; // struct constant_texture
 
-struct checker_texture : public texture {
+struct checker_texture final : public texture {
   std::unique_ptr<texture> odd, even;
 
   checker_texture(std::unique_ptr<texture> o, std::unique_ptr<texture> e)
@@ -43,7 +45,7 @@ struct checker_texture : public texture {
 }; // struct checker_texture
 
 template <class G>
-struct noise_texture : public texture {
+struct noise_texture final : public texture {
   G& gen;
   perlin noise;
 

@@ -7,7 +7,7 @@
 #include <memory>
 #include <stdexcept>
 
-struct bvh_node : public hitable {
+struct bvh_node final : public hitable {
   std::uniform_int_distribution<int> dis{1, 3};
   std::shared_ptr<hitable> left{};
   std::shared_ptr<hitable> right{};

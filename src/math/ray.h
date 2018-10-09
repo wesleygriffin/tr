@@ -11,7 +11,7 @@ struct ray {
   vec3 direction{};
   float time{0.f};
 
-  constexpr ray() noexcept = default;
+  ray() noexcept = default;
   constexpr ray(point3 o, vec3 d, float t = 0.f) noexcept
     : origin(o)
     , direction(d)
